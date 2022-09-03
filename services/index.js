@@ -207,16 +207,14 @@ export const getFeaturedPosts = async () => {
 };
 
 export const submitComment = async (obj) => {
-  let result = {};
-  if (global.window) {
-    result = await fetch('/api/comments', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(obj),
-    });
-  }
+  const baseUrl = process.env.BASE_URL;
+  const result = await fetch(`${baseUrl}/api/comments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(obj),
+  });
 
   return result.json();
 };
